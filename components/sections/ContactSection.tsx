@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   Loader2,
 } from "lucide-react";
+import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 
 export default function ContactSection() {
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");

@@ -1,7 +1,8 @@
 "use client";
 
 import { PERSONAL, NAV_ITEMS } from "@/lib/constants";
-import { Github, Linkedin, Mail, Heart, ArrowUpRight } from "lucide-react";
+import { Mail, Heart, ArrowUpRight } from "lucide-react";
+import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 import Link from "next/link";
 
 const SOCIAL_LINKS = [

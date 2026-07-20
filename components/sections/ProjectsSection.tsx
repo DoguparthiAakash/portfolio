@@ -4,7 +4,8 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { PROJECTS } from "@/lib/constants";
-import { ArrowUpRight, Github, BarChart3 } from "lucide-react";
+import { ArrowUpRight, BarChart3 } from "lucide-react";
+import { FiGithub as Github } from "react-icons/fi";
 import Link from "next/link";
 
 const CATEGORIES = ["All", "LLM", "CV", "ML", "NLP", "MLOps"];

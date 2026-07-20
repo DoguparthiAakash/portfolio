@@ -91,7 +91,7 @@ function DemoCard({
       className="group glass glow-border rounded-2xl p-6 text-left transition-all hover:bg-white/[0.06] w-full"
     >
       <div className="mb-3 flex items-center justify-between">
-        <span className="text-2xl">{demo.icon}</span>
+        <span className="text-2xl"><demo.icon size={24} /></span>
         <Icon size={14} className="text-[var(--text-muted)]" />
       </div>
       <h3 className="font-[var(--font-heading)] text-base font-semibold text-white group-hover:text-[var(--primary)] transition-colors">
@@ -138,7 +138,7 @@ function DemoPanel({
     >
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <span className="text-xl">{demo.icon}</span>
+          <span className="text-xl"><demo.icon size={20} /></span>
           <div>
             <h3 className="font-[var(--font-heading)] text-lg font-semibold text-white">
               {demo.title}

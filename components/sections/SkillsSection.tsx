@@ -54,7 +54,7 @@ export default function SkillsSection() {
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <span>{category.icon}</span>
+                  <span><category.icon size={16} /></span>
                   <span className="hidden sm:inline">{category.title}</span>
                 </span>
               </button>

@@ -25,7 +25,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
@@ -152,7 +152,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
             className="relative hidden aspect-square lg:block"
           >
             {/* Glow ring behind the 3D scene */}

@@ -3,13 +3,14 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Briefcase, Mail, BookOpen, FlaskConical, Github, Linkedin, Terminal } from "lucide-react";
+import { Search, Home, User, Briefcase, Mail, BookOpen, FlaskConical, Terminal } from "lucide-react";
+import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 import { PERSONAL } from "@/lib/constants";
 
 interface CommandItem {
   id: string;
   name: string;
-  icon: React.ElementType;
+  icon: React.ElementType<any>;
   shortcut?: string;
   perform: () => void;
   section: "Navigation" | "Social" | "Actions";

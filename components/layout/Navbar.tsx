@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_ITEMS, PERSONAL } from "@/lib/constants";
-import { Menu, X, Command, Github, FileDown } from "lucide-react";
+import { Menu, X, Command, FileDown } from "lucide-react";
+import { FiGithub as Github } from "react-icons/fi";
 import Link from "next/link";
 
 export default function Navbar() {
