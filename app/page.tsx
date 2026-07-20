@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { Folder, Trash2 } from "lucide-react";
 import MenuBar from "@/components/os/MenuBar";
 import Dock from "@/components/os/Dock";
 import StartMenu from "@/components/os/StartMenu";
@@ -47,7 +48,7 @@ export default function Desktop() {
           </div>
         )}
         {osTheme === "linux" && (
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Ubuntu_22.04_LTS_Jammy_Jellyfish_Wallpaper.jpg')] bg-cover bg-center" />
         )}
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 pointer-events-none" />
       </div>
@@ -60,7 +61,21 @@ export default function Desktop() {
         <MenuBar />
         
         {/* Desktop Space (where windows live) */}
-        <div className={`relative flex-1 ${osTheme === "mac" ? "pt-8 pb-20" : osTheme === "windows" ? "pb-12" : "pt-8 pl-16"}`}>
+        <div className={`relative flex-1 ${osTheme === "mac" ? "pt-8 pb-20" : osTheme === "windows" ? "pb-12" : "pt-8 pl-[60px]"}`}>
+          {/* Linux Desktop Icons */}
+          {osTheme === "linux" && (
+            <div className="absolute top-4 left-4 flex flex-col gap-6 z-0">
+              <div className="flex flex-col items-center gap-1 w-16 cursor-pointer hover:bg-white/10 p-2 rounded-lg transition-colors">
+                <Folder className="w-10 h-10 text-[#e95420] fill-[#e95420]/20" />
+                <span className="text-white text-xs font-medium text-center drop-shadow-md">Home</span>
+              </div>
+              <div className="flex flex-col items-center gap-1 w-16 cursor-pointer hover:bg-white/10 p-2 rounded-lg transition-colors">
+                <Trash2 className="w-10 h-10 text-gray-400" />
+                <span className="text-white text-xs font-medium text-center drop-shadow-md">Trash</span>
+              </div>
+            </div>
+          )}
+          
           <WindowManager />
         </div>
         

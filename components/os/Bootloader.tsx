@@ -10,14 +10,7 @@ export default function Bootloader() {
   const [logs, setLogs] = useState<string[]>([]);
   const [bootPhase, setBootPhase] = useState<"grub" | "kernel" | "done">("grub");
 
-  // Determine actual user agent on first mount
-  useEffect(() => {
-    const ua = navigator.userAgent.toLowerCase();
-    let detectedTheme: OSTheme = "mac";
-    if (ua.includes("win")) detectedTheme = "windows";
-    else if (ua.includes("linux")) detectedTheme = "linux";
-    setOSTheme(detectedTheme);
-  }, [setOSTheme]);
+  // Removed UA detection to force Linux as the default OS
 
   useEffect(() => {
     if (!isBooting) return;

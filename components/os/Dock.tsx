@@ -41,12 +41,12 @@ export default function Dock() {
       <motion.div 
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`flex items-center border-[var(--border)] backdrop-blur-xl transition-all duration-500 ${
+        className={`flex items-center backdrop-blur-xl transition-all duration-500 ${
           osTheme === "mac"
             ? "flex-row gap-2 rounded-2xl bg-black/50 p-2 shadow-2xl border border-white/20"
             : osTheme === "windows"
             ? "flex-row w-full justify-center bg-[#202020]/90 border-t border-[#3c3c3c] p-1 shadow-[0_-8px_32px_rgba(0,0,0,0.5)] h-12 relative"
-            : "flex-col gap-2 bg-[#1e1e1e]/95 p-2 shadow-xl border-r border-[#3d3d3d] h-full justify-start w-[60px]"
+            : "flex-col gap-2 bg-black/60 p-2 shadow-xl border-none h-full justify-start w-[60px]"
         }`}
       >
         {osTheme === "windows" && (

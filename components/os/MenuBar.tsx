@@ -25,15 +25,15 @@ export default function MenuBar() {
     <motion.div 
       initial={{ y: -50 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-[9999] flex h-8 items-center border-b backdrop-blur-md select-none touch-none text-xs font-medium ${
+      className={`fixed top-0 left-0 right-0 z-[9999] flex h-8 items-center backdrop-blur-md select-none touch-none text-xs font-medium ${
         osTheme === "mac" 
-          ? "bg-white/10 border-white/20 text-white/90 justify-between px-4" 
-          : "bg-[#1e1e1e] border-[#3d3d3d] text-white/80 justify-between px-4"
+          ? "bg-white/10 border-b border-white/20 text-white/90 justify-between px-4" 
+          : "bg-black/80 text-white/90 justify-between px-4"
       }`}
     >
       <div className="flex items-center gap-4">
         {/* OS Logo */}
-        <div className={`flex items-center gap-1.5 text-white font-bold cursor-pointer hover:text-white/80 transition-colors ${osTheme === "linux" ? "hover:bg-white/10 px-2 py-1 rounded-full -ml-2" : ""}`}
+        <div className={`flex items-center gap-1.5 text-white font-bold cursor-pointer hover:text-white/80 transition-colors ${osTheme === "linux" ? "hover:bg-white/10 px-3 py-1 rounded-full -ml-3" : ""}`}
              onClick={() => osTheme === "linux" && window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
         >
           {osTheme === "mac" && <Command size={14} className="text-white" />}
@@ -52,8 +52,8 @@ export default function MenuBar() {
       </div>
 
       {osTheme === "linux" && (
-        <div className="absolute left-1/2 -translate-x-1/2 font-bold text-white">
-          {new Date().toLocaleDateString("en-US", { weekday: 'short', month: 'short', day: 'numeric' })} {time}
+        <div className="absolute left-1/2 -translate-x-1/2 font-bold text-white hover:bg-white/10 px-3 py-1 rounded-full cursor-pointer transition-colors">
+          {new Date().toLocaleDateString("en-US", { month: 'short', day: 'numeric' })}  {time}
         </div>
       )}
 
