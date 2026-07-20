@@ -1,113 +1,81 @@
-"use client";
+'use client';
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import SectionHeader from "@/components/shared/SectionHeader";
-import { ABOUT, STATS } from "@/lib/constants";
-import { Brain, Rocket, Search, BookOpen } from "lucide-react";
-
-const ICONS = [Brain, Rocket, Search, BookOpen];
-
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <span ref={ref} className="font-[var(--font-heading)] text-3xl font-bold text-white sm:text-4xl">
-      {isInView ? (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {value}
-          {suffix}
-        </motion.span>
-      ) : (
-        "0"
-      )}
-    </span>
-  );
-}
+import { motion } from 'framer-motion';
+import SectionHeading from '../ui/SectionHeading';
 
 export default function AboutSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+    },
+  };
 
   return (
-    <section id="about" className="section-padding relative" aria-label="About">
-      <div className="container-custom">
-        <SectionHeader
-          title="About Me"
-          subtitle="whoami"
-          description="Engineering intelligent systems from research to production"
-        />
+    <section id="about" className="py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)]">
+      <SectionHeading 
+        title="Engineering Philosophy" 
+        subtitle="How I approach building intelligent systems and solving complex problems."
+      />
+      
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24"
+      >
+        <motion.div variants={itemVariants} className="space-y-6">
+          <h3 className="text-xl md:text-2xl font-medium text-white">First Principles Thinking</h3>
+          <p className="text-[#A1A1AA] leading-relaxed">
+            I don't just glue APIs together. I build systems from the ground up to understand 
+            the underlying constraints. Whether it's training custom models, designing agentic 
+            workflows, or optimizing inference architectures, I break problems down to their 
+            fundamental truths before designing the solution.
+          </p>
+        </motion.div>
 
-        <div ref={ref} className="grid gap-12 lg:grid-cols-5">
-          {/* Summary */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3"
-          >
-            <div className="glass rounded-2xl p-8">
-              <p className="text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-                {ABOUT.summary}
-              </p>
+        <motion.div variants={itemVariants} className="space-y-6">
+          <h3 className="text-xl md:text-2xl font-medium text-white">Production Grade AI</h3>
+          <p className="text-[#A1A1AA] leading-relaxed">
+            A demo is easy; a reliable product is hard. My focus is on crossing the chasm 
+            between research prototypes and scalable, robust software. I build with observability, 
+            evaluations, and guardrails in mind so that AI agents don't just sound smart—they 
+            act reliably in the real world.
+          </p>
+        </motion.div>
 
-              {/* Stats grid */}
-              <div className="mt-8 grid grid-cols-2 gap-6 border-t border-[var(--border)] pt-8 sm:grid-cols-4">
-                {STATS.map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Philosophy */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2"
-          >
-            <div className="space-y-4">
-              {ABOUT.philosophy.map((item, i) => {
-                const Icon = ICONS[i % ICONS.length];
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="group glass rounded-xl p-5 transition-all hover:border-[var(--primary)]/20"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--primary)]/10 text-[var(--primary)]">
-                        <Icon size={18} />
-                      </div>
-                      <div>
-                        <h3 className="font-[var(--font-heading)] text-sm font-semibold text-white">
-                          {item.title}
-                        </h3>
-                        <p className="mt-1 text-xs leading-relaxed text-[var(--text-secondary)]">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </div>
+        <motion.div variants={itemVariants} className="space-y-6">
+          <h3 className="text-xl md:text-2xl font-medium text-white">The End-to-End Mindset</h3>
+          <p className="text-[#A1A1AA] leading-relaxed">
+            Great AI is useless without a great interface. As a full-stack engineer, I care 
+            deeply about the user experience. I design systems where the complexity of the 
+            machine learning models is abstracted away, leaving the user with an elegant, 
+            instant, and magical interaction.
+          </p>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className="space-y-6">
+          <h3 className="text-xl md:text-2xl font-medium text-white">Continuous Learning</h3>
+          <p className="text-[#A1A1AA] leading-relaxed">
+            The AI landscape evolves weekly. I stay ahead not by chasing every trend, but by 
+            building. My best insights come from hacking together OS concepts, experimenting 
+            with new LLM reasoning strategies, and building tools I personally need.
+          </p>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

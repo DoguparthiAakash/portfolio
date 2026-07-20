@@ -1,52 +1,137 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import MagneticButton from '../ui/MagneticButton';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
+
+const TITLES = [
+  "AI Engineer",
+  "Machine Learning Engineer",
+  "AI Agent Developer",
+  "Research Engineer"
+];
 
 export default function HeroSection() {
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTitleIndex((prev) => (prev + 1) % TITLES.length);
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-4">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/20 blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(#4F8CFF 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
       
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 text-center max-w-4xl mx-auto"
-      >
+      <div className="z-10 flex flex-col items-center text-center px-6">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 text-sm font-medium text-gray-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-          Available for new opportunities
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-[#FFFFFF]">
+            Aakash Doguparthi
+          </h1>
         </motion.div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
-            Aakash Doguparthi
-          </span>
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-            Machine Learning Engineer
-          </span>
-        </h1>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="h-10 md:h-12 flex items-center justify-center mb-6 overflow-hidden"
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={titleIndex}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -40, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="text-xl md:text-3xl font-medium text-[#A1A1AA]"
+            >
+              {TITLES[titleIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </motion.div>
 
-        <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-          I build intelligent software, autonomous AI systems, and production-ready deep learning applications. Bridging the gap between raw research and scalable engineering.
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl text-base md:text-lg text-[#A1A1AA] mb-12"
+        >
+          Building intelligent software that learns, reasons and solves real-world problems. 
+          Focused on production-ready machine learning systems, AI agents, and autonomous software.
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform">
-            View My Work <ArrowRight size={18} />
-          </button>
-          <button className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors">
-            Read the Blog
-          </button>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-wrap items-center justify-center gap-4 md:gap-6"
+        >
+          <MagneticButton 
+            className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium transition-colors hover:bg-gray-200"
+            as="a" 
+            href="/resume.pdf"
+          >
+            <FaFileDownload />
+            <span>Resume</span>
+          </MagneticButton>
+
+          <MagneticButton
+            className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
+            as="a"
+            href="https://github.com"
+          >
+            <FaGithub size={20} />
+          </MagneticButton>
+
+          <MagneticButton
+            className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
+            as="a"
+            href="https://linkedin.com"
+          >
+            <FaLinkedin size={20} />
+          </MagneticButton>
+
+          <MagneticButton
+            className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
+            as="a"
+            href="mailto:contact@example.com"
+          >
+            <FaEnvelope size={20} />
+          </MagneticButton>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+      >
+        <span className="text-xs tracking-widest text-[#A1A1AA] uppercase">Scroll</span>
+        <motion.div 
+          className="w-[1px] h-12 bg-gradient-to-b from-[#A1A1AA] to-transparent"
+          animate={{
+            scaleY: [0, 1, 0],
+            originY: [0, 0, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </motion.div>
     </section>
   );

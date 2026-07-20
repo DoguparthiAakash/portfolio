@@ -1,211 +1,113 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Terminal, Network, Code2, Box, Mail, Briefcase, Server } from "lucide-react";
-import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
-import { PERSONAL } from "@/lib/constants";
-import { useRouter } from "next/navigation";
-
-interface CommandItem {
-  id: string;
-  name: string;
-  icon: React.ElementType<any>;
-  shortcut?: string;
-  perform: () => void;
-  section: "Applications" | "Social" | "Actions";
-}
+import { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaSearch, FaHome, FaUser, FaCode, FaEnvelope, FaTerminal, FaFileAlt } from 'react-icons/fa';
 
 export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const router = useRouter();
+  const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Toggle palette on Ctrl+K or Cmd+K
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setIsOpen((open) => !open);
       }
-      
-      // Close on escape
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         setIsOpen(false);
       }
     };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
-  // Auto focus input when opened
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-      setQuery("");
-      setSelectedIndex(0);
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    } else {
+      setSearch('');
     }
   }, [isOpen]);
 
-  const openProject = (slug: string) => {
+  const handleSelect = (action: () => void) => {
+    action();
     setIsOpen(false);
-    router.push(`/projects/${slug}`);
   };
 
-  const openUrl = (url: string) => {
-    setIsOpen(false);
-    window.open(url, "_blank");
-  };
-
-  const commands: CommandItem[] = [
-    { id: "agent", name: "Agentic OS", icon: Terminal, section: "Applications", perform: () => openProject("agent") },
-    { id: "graph", name: "Neural Graph", icon: Network, section: "Applications", perform: () => openProject("graph") },
-    { id: "jupyter", name: "Jupyter Lab", icon: Code2, section: "Applications", perform: () => openProject("jupyter") },
-    { id: "latent", name: "Latent Space Explorer", icon: Box, section: "Applications", perform: () => openProject("latent") },
-    { id: "mlops", name: "MLOps & Arch", icon: Server, section: "Applications", perform: () => openProject("mlops") },
-    
-    { id: "github", name: "GitHub", icon: Github, section: "Social", perform: () => openUrl(PERSONAL.github) },
-    { id: "linkedin", name: "LinkedIn", icon: Linkedin, section: "Social", perform: () => openUrl(PERSONAL.linkedin) },
-    { id: "email", name: "Email", icon: Mail, section: "Social", perform: () => openUrl(`mailto:${PERSONAL.email}`) },
-    
-    { id: "resume", name: "Download Resume", icon: Briefcase, section: "Actions", perform: () => openUrl(PERSONAL.resumePath) },
+  const commands = [
+    { id: 'home', title: 'Home', icon: <FaHome />, action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
+    { id: 'about', title: 'About', icon: <FaUser />, action: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'projects', title: 'Projects', icon: <FaCode />, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'contact', title: 'Contact', icon: <FaEnvelope />, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'resume', title: 'Download Resume', icon: <FaFileAlt />, action: () => window.open('/resume.pdf', '_blank') },
+    { id: 'terminal', title: 'Open Terminal', icon: <FaTerminal />, action: () => alert('Terminal Easter Egg! (Coming soon)') },
   ];
 
-  const filteredCommands = commands.filter((command) =>
-    command.name.toLowerCase().includes(query.toLowerCase())
+  const filteredCommands = commands.filter(cmd => 
+    cmd.title.toLowerCase().includes(search.toLowerCase())
   );
-
-  // Group by section
-  const groupedCommands = filteredCommands.reduce((acc, cmd) => {
-    if (!acc[cmd.section]) acc[cmd.section] = [];
-    acc[cmd.section].push(cmd);
-    return acc;
-  }, {} as Record<string, CommandItem[]>);
-
-  const flatResults = Object.values(groupedCommands).flat();
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-
-      switch (e.key) {
-        case "ArrowDown":
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev + 1) % flatResults.length);
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev - 1 + flatResults.length) % flatResults.length);
-          break;
-        case "Enter":
-          e.preventDefault();
-          if (flatResults[selectedIndex]) {
-            flatResults[selectedIndex].perform();
-          }
-          break;
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, flatResults, selectedIndex]);
 
   return (
     <>
       <AnimatePresence>
         {isOpen && (
-          <>
+          <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh]">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
             />
-            <div className="fixed inset-0 z-[101] flex items-start justify-center pt-[15vh] px-4 pointer-events-none">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="w-full max-w-xl overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg)] shadow-2xl pointer-events-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Search Input */}
-                <div className="flex items-center border-b border-[var(--border)] px-4 py-4">
-                  <Search size={18} className="text-[var(--text-muted)]" />
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    placeholder="Type a command or search..."
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    className="ml-3 flex-1 bg-transparent text-sm text-white placeholder-[var(--text-muted)] outline-none"
-                  />
-                  <div className="flex items-center gap-1 font-[var(--font-mono)] text-[10px] text-[var(--text-muted)]">
-                    <span className="rounded border border-[var(--border)] bg-white/5 px-1.5 py-0.5">ESC</span>
-                  </div>
-                </div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-xl bg-[#111111] border border-[rgba(255,255,255,0.1)] rounded-xl shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center px-4 py-3 border-b border-[rgba(255,255,255,0.05)]">
+                <FaSearch className="text-[#A1A1AA] mr-3" />
+                <input
+                  ref={inputRef}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="flex-1 bg-transparent border-none outline-none text-white placeholder-[#A1A1AA] text-lg"
+                  placeholder="Type a command or search..."
+                />
+                <div className="px-2 py-1 text-xs text-[#A1A1AA] bg-white/5 rounded border border-white/10">ESC</div>
+              </div>
 
-                {/* Results */}
-                <div className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none">
-                  {Object.entries(groupedCommands).length === 0 ? (
-                    <div className="py-14 text-center text-sm text-[var(--text-muted)]">
-                      No results found for "{query}"
-                    </div>
-                  ) : (
-                    Object.entries(groupedCommands).map(([section, items]) => (
-                      <div key={section} className="mb-2">
-                        <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] font-[var(--font-mono)]">
-                          {section}
-                        </div>
-                        {items.map((cmd) => {
-                          const index = flatResults.findIndex((item) => item.id === cmd.id);
-                          const isSelected = index === selectedIndex;
-                          const Icon = cmd.icon as any;
-
-                          return (
-                            <button
-                              key={cmd.id}
-                              onClick={cmd.perform}
-                              onMouseEnter={() => setSelectedIndex(index)}
-                              className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors ${
-                                isSelected
-                                  ? "bg-[var(--primary)]/10 text-[var(--primary)]"
-                                  : "text-[var(--text-secondary)] hover:bg-white/5"
-                              }`}
-                            >
-                              <Icon size={16} className={isSelected ? "text-[var(--primary)]" : "text-[var(--text-muted)]"} />
-                              {cmd.name}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    ))
-                  )}
-                </div>
-                
-                {/* Footer */}
-                <div className="flex items-center justify-between border-t border-[var(--border)] bg-white/[0.02] px-4 py-3 text-[10px] text-[var(--text-muted)] font-[var(--font-mono)]">
-                  <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1">
-                      <span className="rounded border border-[var(--border)] bg-white/5 px-1.5 py-0.5">↑↓</span> to navigate
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <span className="rounded border border-[var(--border)] bg-white/5 px-1.5 py-0.5">↵</span> to select
-                    </span>
+              <div className="max-h-[60vh] overflow-y-auto py-2">
+                {filteredCommands.length > 0 ? (
+                  <ul className="px-2 space-y-1">
+                    {filteredCommands.map((cmd) => (
+                      <li key={cmd.id}>
+                        <button
+                          onClick={() => handleSelect(cmd.action)}
+                          className="w-full flex items-center px-3 py-3 text-left text-sm text-[#A1A1AA] hover:text-white hover:bg-white/5 rounded-lg transition-colors group"
+                        >
+                          <span className="mr-3 text-[#A1A1AA] group-hover:text-white transition-colors">{cmd.icon}</span>
+                          {cmd.title}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="py-8 text-center text-[#A1A1AA] text-sm">
+                    No results found.
                   </div>
-                  <div>Command Menu</div>
-                </div>
-              </motion.div>
-            </div>
-          </>
+                )}
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>

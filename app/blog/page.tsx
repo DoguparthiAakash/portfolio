@@ -1,54 +1,50 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import BlogList from "./BlogList";
-import type { Metadata } from "next";
+import Link from 'next/link';
+import SectionHeading from '@/components/ui/SectionHeading';
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Technical articles on machine learning, deep learning, NLP, computer vision, and AI systems engineering by Aakash Doguparthi.",
-};
-
-// Blog posts data (in production, could be sourced from MDX files or CMS)
-export const BLOG_POSTS = [
+const MOCK_POSTS = [
   {
-    slug: "transformer-architecture-deep-dive",
-    title: "Understanding the Transformer Architecture: A Deep Dive",
-    excerpt:
-      "A comprehensive walkthrough of the Transformer architecture from 'Attention Is All You Need' — covering self-attention, multi-head attention, positional encoding, and implementation details in PyTorch.",
-    date: "2025-01-15",
-    readTime: "15 min",
-    tags: ["Transformers", "Deep Learning", "NLP", "PyTorch"],
-    category: "Architecture",
+    slug: 'building-offline-ai-agents',
+    title: 'Building Fully Offline AI Agents with llama.cpp',
+    date: '2024-03-15',
+    excerpt: 'How to run large language models locally on your machine without sacrificing speed or privacy, exploring ONNX and GGML formats.'
   },
   {
-    slug: "building-production-rag-systems",
-    title: "Building Production RAG Systems: From Prototype to Scale",
-    excerpt:
-      "A practical guide to building Retrieval-Augmented Generation systems that actually work in production — covering chunking strategies, hybrid search, re-ranking, evaluation, and deployment patterns.",
-    date: "2025-03-22",
-    readTime: "20 min",
-    tags: ["RAG", "LLMs", "Vector Databases", "LangChain"],
-    category: "MLOps",
+    slug: 'system-design-for-mlops',
+    title: 'System Design for Modern MLOps',
+    date: '2024-02-02',
+    excerpt: 'Architecting robust machine learning pipelines from data ingestion to model deployment using Kubernetes, Ray, and MLflow.'
   },
   {
-    slug: "cuda-optimization-deep-learning",
-    title: "CUDA Optimization Techniques for Deep Learning Training",
-    excerpt:
-      "Practical techniques for optimizing deep learning training throughput — mixed precision, gradient accumulation, data loading, memory optimization, and profiling with NVIDIA Nsight.",
-    date: "2025-05-10",
-    readTime: "18 min",
-    tags: ["CUDA", "GPU", "Optimization", "PyTorch"],
-    category: "Performance",
-  },
+    slug: 'reasoning-in-llms',
+    title: 'Eliciting Reasoning in LLMs: Beyond Chain of Thought',
+    date: '2023-11-20',
+    excerpt: 'A deep dive into advanced prompting techniques and fine-tuning strategies to make language models actually think before they speak.'
+  }
 ];
 
 export default function BlogPage() {
   return (
-    <>
-      <Navbar />
-      <BlogList posts={BLOG_POSTS} />
-      <Footer />
-    </>
+    <div className="px-6 md:px-12 lg:px-24 xl:px-48 mx-auto max-w-7xl w-full py-32 min-h-screen">
+      <SectionHeading 
+        title="Technical Writing" 
+        subtitle="Thoughts on AI, machine learning, systems architecture, and engineering."
+      />
+      
+      <div className="mt-16 space-y-12">
+        {MOCK_POSTS.map((post) => (
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
+            <article className="border-b border-[rgba(255,255,255,0.08)] pb-12 transition-colors hover:border-white/20">
+              <time className="text-sm font-mono text-[#A1A1AA] mb-4 block">{post.date}</time>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-[#4F8CFF] transition-colors">
+                {post.title}
+              </h3>
+              <p className="text-lg text-[#A1A1AA] leading-relaxed max-w-3xl">
+                {post.excerpt}
+              </p>
+            </article>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

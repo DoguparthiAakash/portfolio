@@ -1,32 +1,23 @@
-"use client";
-
-import MacNavbar from "@/components/layout/MacNavbar";
 import HeroSection from "@/components/sections/HeroSection";
-import BentoGridSection from "@/components/sections/BentoGridSection";
-import ResumeSection from "@/components/sections/ResumeSection";
-import NeuralVis3D from "@/components/three/NeuralVis3D";
+import AboutSection from "@/components/sections/AboutSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import TechStackSection from "@/components/sections/TechStackSection";
+import TimelineSection from "@/components/sections/TimelineSection";
+import GithubSection from "@/components/sections/GithubSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
-      <MacNavbar />
-      
-      {/* Spacer for fixed navbar */}
-      <div className="pt-24" />
-      
+    <div className="flex flex-col w-full">
       <HeroSection />
-      
-      <NeuralVis3D />
-      
-      <BentoGridSection />
-      
-      <ResumeSection />
-      
-      {/* Footer */}
-      <footer className="py-12 text-center text-gray-500 text-sm border-t border-white/10 mt-24">
-        <p>© {new Date().getFullYear()} Aakash Doguparthi. All rights reserved.</p>
-        <p className="mt-2">Machine Learning Engineer & Autonomous Systems Developer</p>
-      </footer>
-    </main>
+      <div className="px-6 md:px-12 lg:px-24 xl:px-48 mx-auto max-w-7xl w-full">
+        <AboutSection />
+        <ProjectsSection />
+        <TechStackSection />
+        <TimelineSection />
+        <GithubSection />
+        <ContactSection />
+      </div>
+    </div>
   );
 }
