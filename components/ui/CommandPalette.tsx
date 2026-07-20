@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Terminal, Network, Code2, Box, Mail, Briefcase, Server } from "lucide-react";
 import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 import { PERSONAL } from "@/lib/constants";
-import { useOSStore } from "@/store/os-store";
+import { useRouter } from "next/navigation";
 
 interface CommandItem {
   id: string;
@@ -20,7 +20,7 @@ export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { openApp } = useOSStore();
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Toggle palette on Ctrl+K or Cmd+K
@@ -49,9 +49,9 @@ export default function CommandPalette() {
     }
   }, [isOpen]);
 
-  const openOsApp = (appId: string, title: string, icon: any) => {
+  const openProject = (slug: string) => {
     setIsOpen(false);
-    openApp({ id: appId, title, icon });
+    router.push(`/projects/${slug}`);
   };
 
   const openUrl = (url: string) => {
@@ -60,11 +60,11 @@ export default function CommandPalette() {
   };
 
   const commands: CommandItem[] = [
-    { id: "agent", name: "Agentic OS", icon: Terminal, section: "Applications", perform: () => openOsApp("agent", "Agentic OS", Terminal) },
-    { id: "graph", name: "Neural Graph", icon: Network, section: "Applications", perform: () => openOsApp("graph", "Neural Graph", Network) },
-    { id: "jupyter", name: "Jupyter Lab", icon: Code2, section: "Applications", perform: () => openOsApp("jupyter", "Jupyter Lab", Code2) },
-    { id: "latent", name: "Latent Space Explorer", icon: Box, section: "Applications", perform: () => openOsApp("latent", "Latent Space", Box) },
-    { id: "mlops", name: "MLOps & Arch", icon: Server, section: "Applications", perform: () => openOsApp("mlops", "MLOps & Arch", Server) },
+    { id: "agent", name: "Agentic OS", icon: Terminal, section: "Applications", perform: () => openProject("agent") },
+    { id: "graph", name: "Neural Graph", icon: Network, section: "Applications", perform: () => openProject("graph") },
+    { id: "jupyter", name: "Jupyter Lab", icon: Code2, section: "Applications", perform: () => openProject("jupyter") },
+    { id: "latent", name: "Latent Space Explorer", icon: Box, section: "Applications", perform: () => openProject("latent") },
+    { id: "mlops", name: "MLOps & Arch", icon: Server, section: "Applications", perform: () => openProject("mlops") },
     
     { id: "github", name: "GitHub", icon: Github, section: "Social", perform: () => openUrl(PERSONAL.github) },
     { id: "linkedin", name: "LinkedIn", icon: Linkedin, section: "Social", perform: () => openUrl(PERSONAL.linkedin) },
