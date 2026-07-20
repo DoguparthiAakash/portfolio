@@ -62,7 +62,7 @@ export default function OSWindowComponent({ windowData, children }: WindowProps)
           osTheme === "mac"
             ? "bg-transparent px-3 border-b border-white/10"
             : osTheme === "windows"
-            ? "bg-transparent px-3"
+            ? "bg-transparent pl-3 pr-0"
             : "bg-[#252525] px-3 border-b border-[#3d3d3d]"
         }`}
         onPointerDown={(e) => dragControls.start(e)}
@@ -96,14 +96,14 @@ export default function OSWindowComponent({ windowData, children }: WindowProps)
 
         {/* Windows / Linux Controls (Right) */}
         {(osTheme === "windows" || osTheme === "linux") && (
-          <div className="flex">
-            <button onClick={(e) => { e.stopPropagation(); minimizeApp(windowData.id); }} className={`flex items-center justify-center h-10 w-11 transition-colors ${osTheme === "windows" ? "hover:bg-white/10" : "hover:bg-white/10 rounded-full h-6 w-6 mr-1"}`}>
+          <div className={`flex ${osTheme === "windows" ? "h-full items-start" : "items-center"}`}>
+            <button onClick={(e) => { e.stopPropagation(); minimizeApp(windowData.id); }} className={`flex items-center justify-center transition-colors ${osTheme === "windows" ? "h-full w-[46px] hover:bg-white/10" : "hover:bg-white/10 rounded-full h-6 w-6 mr-1"}`}>
               <Minus className="h-3 w-3 text-white" />
             </button>
-            <button onClick={(e) => { e.stopPropagation(); maximizeApp(windowData.id); }} className={`flex items-center justify-center h-10 w-11 transition-colors ${osTheme === "windows" ? "hover:bg-white/10" : "hover:bg-white/10 rounded-full h-6 w-6 mr-1"}`}>
+            <button onClick={(e) => { e.stopPropagation(); maximizeApp(windowData.id); }} className={`flex items-center justify-center transition-colors ${osTheme === "windows" ? "h-full w-[46px] hover:bg-white/10" : "hover:bg-white/10 rounded-full h-6 w-6 mr-1"}`}>
               <Square className="h-3 w-3 text-white" />
             </button>
-            <button onClick={(e) => { e.stopPropagation(); closeApp(windowData.id); }} className={`flex items-center justify-center h-10 w-11 transition-colors ${osTheme === "windows" ? "hover:bg-[#e81123]" : "hover:bg-[#e95420] rounded-full h-6 w-6 bg-[#3d3d3d]"}`}>
+            <button onClick={(e) => { e.stopPropagation(); closeApp(windowData.id); }} className={`flex items-center justify-center transition-colors ${osTheme === "windows" ? "h-full w-[46px] hover:bg-[#e81123]" : "hover:bg-[#e95420] rounded-full h-6 w-6 bg-[#3d3d3d]"}`}>
               <X className="h-3 w-3 text-white" />
             </button>
           </div>

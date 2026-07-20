@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useOSStore } from "@/store/os-store";
-import { Terminal, Network, Code2, Box, Command, Server } from "lucide-react";
-import { useState } from "react";
+import { Terminal, Network, Code2, Box, Command, Server, Wifi, Battery, Volume2, ChevronUp } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const APPS = [
   { id: "agent", title: "Agentic OS", icon: Terminal, color: "text-green-400" },
@@ -14,8 +14,21 @@ const APPS = [
 ];
 
 export default function Dock() {
-  const { openApp, windows, osTheme } = useOSStore();
+  const { openApp, windows, osTheme, toggleStartMenu } = useOSStore();
   const [hoveredApp, setHoveredApp] = useState<string | null>(null);
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }));
+      setDate(now.toLocaleDateString("en-US", { month: "numeric", day: "numeric", year: "numeric" }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className={`fixed z-[9999] transition-all duration-500 ${
@@ -28,22 +41,23 @@ export default function Dock() {
       <motion.div 
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`flex items-center gap-2 border-[var(--border)] backdrop-blur-xl transition-all duration-500 ${
+        className={`flex items-center border-[var(--border)] backdrop-blur-xl transition-all duration-500 ${
           osTheme === "mac"
-            ? "flex-row rounded-2xl bg-black/50 p-2 shadow-2xl border border-white/20"
+            ? "flex-row gap-2 rounded-2xl bg-black/50 p-2 shadow-2xl border border-white/20"
             : osTheme === "windows"
-            ? "flex-row w-full justify-center bg-[#202020]/90 border-t border-[#3c3c3c] p-1 shadow-[0_-8px_32px_rgba(0,0,0,0.5)]"
-            : "flex-col rounded-xl bg-[#1e1e1e]/90 p-2 shadow-xl border border-[#3d3d3d]"
+            ? "flex-row w-full justify-center bg-[#202020]/90 border-t border-[#3c3c3c] p-1 shadow-[0_-8px_32px_rgba(0,0,0,0.5)] h-12 relative"
+            : "flex-col gap-2 rounded-xl bg-[#1e1e1e]/90 p-2 shadow-xl border border-[#3d3d3d]"
         }`}
       >
         {osTheme === "windows" && (
           <button
-            onClick={() => {
-              window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
-            }}
-            className="flex h-10 w-10 items-center justify-center rounded transition-all duration-200 hover:bg-white/10"
+            onClick={toggleStartMenu}
+            className="flex h-10 w-10 items-center justify-center rounded transition-all duration-200 hover:bg-white/10 mx-1"
           >
-            <div className="w-5 h-5 bg-blue-500 rounded-sm" /> {/* Mock Windows Start Button */}
+            {/* Windows 11 Icon (4 blue squares) */}
+            <svg viewBox="0 0 88 88" className="w-5 h-5">
+              <path fill="#00a4ef" d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L0 75.44V46.12zM39.636 6.945L87.314 0v41.527L39.636 41.73zM87.328 46.155L87.314 88l-47.678-6.902-.023-34.908z" />
+            </svg>
           </button>
         )}
         {APPS.map((app) => {
@@ -120,6 +134,25 @@ export default function Dock() {
               </button>
             </div>
           </>
+        )}
+
+        {/* Windows 11 System Tray (Right Side) */}
+        {osTheme === "windows" && (
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center h-full py-1 text-white/90">
+            <button className="flex h-full px-2 items-center justify-center rounded hover:bg-white/10 transition-colors">
+              <ChevronUp size={16} />
+            </button>
+            <button className="flex h-full px-2 gap-2 items-center justify-center rounded hover:bg-white/10 transition-colors">
+              <Wifi size={14} />
+              <Volume2 size={14} />
+              <Battery size={14} />
+            </button>
+            <button className="flex flex-col h-full px-2 items-end justify-center rounded hover:bg-white/10 transition-colors text-[10px] leading-tight">
+              <span>{time}</span>
+              <span>{date}</span>
+            </button>
+            <div className="w-[2px] h-full bg-transparent hover:bg-white/20 transition-colors cursor-pointer ml-2" />
+          </div>
         )}
       </motion.div>
     </div>

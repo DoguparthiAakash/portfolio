@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import MenuBar from "@/components/os/MenuBar";
 import Dock from "@/components/os/Dock";
+import StartMenu from "@/components/os/StartMenu";
 import CommandPalette from "@/components/ui/CommandPalette";
 import Bootloader from "@/components/os/Bootloader";
 import { useOSStore } from "@/store/os-store";
@@ -64,6 +65,7 @@ export default function Desktop() {
         </div>
         
         <Dock />
+        <StartMenu />
       </div>
 
       {/* Global Spotlight Search */}

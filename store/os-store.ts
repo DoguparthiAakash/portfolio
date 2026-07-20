@@ -21,8 +21,11 @@ interface OSState {
   highestZIndex: number;
   osTheme: OSTheme;
   isBooting: boolean;
+  isStartMenuOpen: boolean;
   setOSTheme: (theme: OSTheme) => void;
   setBooting: (booting: boolean) => void;
+  toggleStartMenu: () => void;
+  closeStartMenu: () => void;
   openApp: (app: Partial<OSWindow> & { id: string }) => void;
   closeApp: (id: string) => void;
   minimizeApp: (id: string) => void;
@@ -37,9 +40,12 @@ export const useOSStore = create<OSState>((set, get) => ({
   highestZIndex: 10,
   osTheme: "mac", // default
   isBooting: true, // starts with a boot screen
+  isStartMenuOpen: false,
 
   setOSTheme: (theme) => set({ osTheme: theme }),
   setBooting: (booting) => set({ isBooting: booting }),
+  toggleStartMenu: () => set((state) => ({ isStartMenuOpen: !state.isStartMenuOpen })),
+  closeStartMenu: () => set({ isStartMenuOpen: false }),
 
   openApp: (app) => {
     const { windows, highestZIndex } = get();
