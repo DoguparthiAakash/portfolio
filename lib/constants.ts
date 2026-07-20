@@ -2,6 +2,8 @@
 // PORTFOLIO DATA — Aakash Doguparthi
 // ============================================
 
+import { Terminal, Brain, Microscope, Eye, FileText, Bot, Database, Zap, Server, Cloud, Rocket, LineChart, Image as ImageIcon, Search, MessageSquare, HelpCircle } from "lucide-react";
+
 export const PERSONAL = {
   name: "Aakash Doguparthi",
   firstName: "Aakash",
@@ -57,7 +59,7 @@ export interface Skill {
 export interface SkillCategory {
   id: string;
   title: string;
-  icon: string;
+  icon: any;
   skills: Skill[];
 }
 
@@ -65,7 +67,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "programming",
     title: "Programming",
-    icon: "💻",
+    icon: Terminal,
     skills: [
       { name: "Python" },
       { name: "C++" },
@@ -79,7 +81,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "ml",
     title: "Machine Learning",
-    icon: "🧠",
+    icon: Brain,
     skills: [
       { name: "NumPy" },
       { name: "Pandas" },
@@ -93,7 +95,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "dl",
     title: "Deep Learning",
-    icon: "🔬",
+    icon: Microscope,
     skills: [
       { name: "PyTorch" },
       { name: "TensorFlow" },
@@ -107,7 +109,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "cv",
     title: "Computer Vision",
-    icon: "👁️",
+    icon: Eye,
     skills: [
       { name: "OpenCV" },
       { name: "YOLO" },
@@ -119,7 +121,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "nlp",
     title: "NLP",
-    icon: "📝",
+    icon: FileText,
     skills: [
       { name: "Transformers" },
       { name: "spaCy" },
@@ -133,7 +135,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "llm",
     title: "LLMs",
-    icon: "🤖",
+    icon: Bot,
     skills: [
       { name: "OpenAI" },
       { name: "Anthropic" },
@@ -148,7 +150,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "vector",
     title: "Vector Databases",
-    icon: "📊",
+    icon: Database,
     skills: [
       { name: "FAISS" },
       { name: "Pinecone" },
@@ -161,7 +163,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "backend",
     title: "Backend",
-    icon: "⚡",
+    icon: Zap,
     skills: [
       { name: "FastAPI" },
       { name: "Flask" },
@@ -175,7 +177,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "databases",
     title: "Databases",
-    icon: "🗄️",
+    icon: Server,
     skills: [
       { name: "PostgreSQL" },
       { name: "MongoDB" },
@@ -187,7 +189,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "cloud",
     title: "Cloud & DevOps",
-    icon: "☁️",
+    icon: Cloud,
     skills: [
       { name: "AWS" },
       { name: "Azure" },
@@ -200,7 +202,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "deployment",
     title: "ML Deployment",
-    icon: "🚀",
+    icon: Rocket,
     skills: [
       { name: "TorchServe" },
       { name: "TensorRT" },
@@ -212,7 +214,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: "viz",
     title: "Visualization",
-    icon: "📈",
+    icon: LineChart,
     skills: [
       { name: "Matplotlib" },
       { name: "Plotly" },
@@ -783,7 +785,7 @@ export interface PlaygroundDemo {
   description: string;
   model: string;
   type: "image" | "text" | "chat" | "audio";
-  icon: string;
+  icon: any;
 }
 
 export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
@@ -793,7 +795,7 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Upload an image and get top-5 predictions with confidence scores.",
     model: "EfficientNet-B4",
     type: "image",
-    icon: "🖼️",
+    icon: ImageIcon,
   },
   {
     id: "object-detection",
@@ -801,7 +803,7 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Detect and localize objects in images with bounding boxes.",
     model: "YOLOv8-Large",
     type: "image",
-    icon: "🔍",
+    icon: Search,
   },
   {
     id: "sentiment-analysis",
@@ -809,7 +811,7 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Analyze the sentiment of any text — positive, negative, or neutral.",
     model: "DistilBERT-SST2",
     type: "text",
-    icon: "💬",
+    icon: MessageSquare,
   },
   {
     id: "text-summarization",
@@ -817,7 +819,7 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Generate concise summaries of long-form content.",
     model: "BART-Large-CNN",
     type: "text",
-    icon: "📄",
+    icon: FileText,
   },
   {
     id: "llm-chat",
@@ -825,7 +827,7 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Have a conversation with a large language model.",
     model: "GPT-4o-mini",
     type: "chat",
-    icon: "🤖",
+    icon: Bot,
   },
   {
     id: "question-answering",
@@ -833,6 +835,6 @@ export const PLAYGROUND_DEMOS: PlaygroundDemo[] = [
     description: "Provide context and ask questions — the model extracts answers.",
     model: "RoBERTa-Large-SQuAD",
     type: "text",
-    icon: "❓",
+    icon: HelpCircle,
   },
 ];
