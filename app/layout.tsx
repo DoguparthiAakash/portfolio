@@ -6,8 +6,7 @@ import CursorGlow from "@/components/ui/CursorGlow";
 import CommandPalette from "@/components/ui/CommandPalette";
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
-import AIChatbar from "@/components/ui/AIChatbar";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -25,7 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
-          <ThemeSwitcher />
+
           <CursorGlow />
           <CommandPalette />
           <SmoothScroll>
@@ -33,7 +32,7 @@ export default function RootLayout({
               {children}
             </main>
           </SmoothScroll>
-          <AIChatbar />
+
         </ThemeProvider>
       </body>
     </html>
