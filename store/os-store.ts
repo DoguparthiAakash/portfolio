@@ -14,9 +14,15 @@ export interface OSWindow {
   isFocused: boolean;
 }
 
+export type OSTheme = "mac" | "windows" | "linux";
+
 interface OSState {
   windows: OSWindow[];
   highestZIndex: number;
+  osTheme: OSTheme;
+  isBooting: boolean;
+  setOSTheme: (theme: OSTheme) => void;
+  setBooting: (booting: boolean) => void;
   openApp: (app: Partial<OSWindow> & { id: string }) => void;
   closeApp: (id: string) => void;
   minimizeApp: (id: string) => void;
@@ -29,6 +35,11 @@ interface OSState {
 export const useOSStore = create<OSState>((set, get) => ({
   windows: [],
   highestZIndex: 10,
+  osTheme: "mac", // default
+  isBooting: true, // starts with a boot screen
+
+  setOSTheme: (theme) => set({ osTheme: theme }),
+  setBooting: (booting) => set({ isBooting: booting }),
 
   openApp: (app) => {
     const { windows, highestZIndex } = get();

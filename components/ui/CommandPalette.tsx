@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Terminal, Network, Code2, Box, Mail, Briefcase } from "lucide-react";
+import { Search, Terminal, Network, Code2, Box, Mail, Briefcase, Server } from "lucide-react";
 import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 import { PERSONAL } from "@/lib/constants";
 import { useOSStore } from "@/store/os-store";
@@ -64,6 +64,7 @@ export default function CommandPalette() {
     { id: "graph", name: "Neural Graph", icon: Network, section: "Applications", perform: () => openOsApp("graph", "Neural Graph", Network) },
     { id: "jupyter", name: "Jupyter Lab", icon: Code2, section: "Applications", perform: () => openOsApp("jupyter", "Jupyter Lab", Code2) },
     { id: "latent", name: "Latent Space Explorer", icon: Box, section: "Applications", perform: () => openOsApp("latent", "Latent Space", Box) },
+    { id: "mlops", name: "MLOps & Arch", icon: Server, section: "Applications", perform: () => openOsApp("mlops", "MLOps & Arch", Server) },
     
     { id: "github", name: "GitHub", icon: Github, section: "Social", perform: () => openUrl(PERSONAL.github) },
     { id: "linkedin", name: "LinkedIn", icon: Linkedin, section: "Social", perform: () => openUrl(PERSONAL.linkedin) },

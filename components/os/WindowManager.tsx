@@ -18,6 +18,9 @@ const JupyterApp = dynamic(() => import("../apps/JupyterApp"), {
 const LatentSpaceApp = dynamic(() => import("../apps/LatentSpaceApp"), {
   loading: () => <AppLoader />,
 });
+const MLOpsApp = dynamic(() => import("../apps/MLOpsApp"), {
+  loading: () => <AppLoader />,
+});
 
 function AppLoader() {
   return (
@@ -48,6 +51,9 @@ export default function WindowManager() {
             break;
           case "latent":
             Content = <LatentSpaceApp />;
+            break;
+          case "mlops":
+            Content = <MLOpsApp />;
             break;
           default:
             Content = (
