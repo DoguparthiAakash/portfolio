@@ -6,19 +6,19 @@ import SectionHeading from '../ui/SectionHeading';
 const TECH_CATEGORIES = [
   {
     title: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "C++", "Java", "Go", "Rust"]
+    items: ["Python", "Java", "C", "Rust", "Assembly (NUX)"]
   },
   {
-    title: "Frameworks & Libraries",
-    items: ["PyTorch", "TensorFlow", "React", "Next.js", "FastAPI", "TailwindCSS", "Framer Motion", "Electron"]
+    title: "Frontend & UI",
+    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Tailwind CSS"]
   },
   {
-    title: "AI & ML",
-    items: ["LangChain", "HuggingFace", "OpenAI", "Ollama", "Whisper", "ONNX", "llama.cpp"]
+    title: "Backend & Databases",
+    items: ["Flask (Python)", "Java Backend", "SQLite", "SQL", "Supabase"]
   },
   {
-    title: "Databases & Tools",
-    items: ["PostgreSQL", "SQLite", "MongoDB", "Vector DBs", "Docker", "Git", "Linux", "Vercel"]
+    title: "AI & Systems",
+    items: ["YOLO & Object Detection", "Classification Models", "TF-IDF / Spam Detection", "OS Development", "Compiler/Runtime Design", "Virtual Machine Design"]
   }
 ];
 

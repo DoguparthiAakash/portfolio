@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import CursorGlow from "@/components/ui/CursorGlow";
 import CommandPalette from "@/components/ui/CommandPalette";
+import Chatbar from "@/components/ui/Chatbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-[#090909] text-white selection:bg-[#4F8CFF]/30 selection:text-white min-h-screen flex flex-col`}>
         <CursorGlow />
         <CommandPalette />
+        <Chatbar />
         <SmoothScroll>
           <main className="flex-grow">
             {children}

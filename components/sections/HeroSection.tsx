@@ -6,10 +6,10 @@ import MagneticButton from '../ui/MagneticButton';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
 
 const TITLES = [
-  "AI Engineer",
-  "Machine Learning Engineer",
-  "AI Agent Developer",
-  "Research Engineer"
+  "AI & ML Engineer",
+  "Systems Programmer",
+  "Full-Stack Developer",
+  "OS Developer"
 ];
 
 export default function HeroSection() {
@@ -37,8 +37,11 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-[#FFFFFF]">
-            Aakash Doguparthi
+            Doguparthi Aakash
           </h1>
+          <p className="text-lg md:text-xl text-[#A1A1AA] max-w-2xl mb-8 leading-relaxed">
+            I'm a final-year CS undergrad passionate about low-level systems. I build operating systems from scratch, design programming languages, and engineer applied AI solutions.
+          </p>
         </motion.div>
 
         <motion.div
@@ -67,8 +70,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl text-base md:text-lg text-[#A1A1AA] mb-12"
         >
-          Building intelligent software that learns, reasons and solves real-world problems. 
-          Focused on production-ready machine learning systems, AI agents, and autonomous software.
+          Creator of Mithl OS, UOS Mobile OS, and NUX programming language. Focused on performance engineering, systems architecture, and machine learning pipelines.
         </motion.p>
 
         <motion.div
@@ -89,7 +91,7 @@ export default function HeroSection() {
           <MagneticButton
             className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
             as="a"
-            href="https://github.com"
+            href="https://github.com/DoguparthiAakash"
           >
             <FaGithub size={20} />
           </MagneticButton>
@@ -97,7 +99,7 @@ export default function HeroSection() {
           <MagneticButton
             className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
             as="a"
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/aakash-doguparthi-129251297/"
           >
             <FaLinkedin size={20} />
           </MagneticButton>
@@ -105,7 +107,7 @@ export default function HeroSection() {
           <MagneticButton
             className="flex items-center justify-center w-12 h-12 bg-[#111111] border border-[rgba(255,255,255,0.08)] rounded-full text-[#A1A1AA] hover:text-white transition-colors"
             as="a"
-            href="mailto:contact@example.com"
+            href="mailto:doguparthiaakash@gmail.com"
           >
             <FaEnvelope size={20} />
           </MagneticButton>

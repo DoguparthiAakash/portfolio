@@ -18,13 +18,13 @@ export default function GithubSection() {
           subtitle="I believe in building in public and contributing to the AI ecosystem."
         />
         <a 
-          href="https://github.com" 
+          href="https://github.com/DoguparthiAakash" 
           target="_blank" 
           rel="noreferrer"
           className="group flex items-center gap-2 text-[#A1A1AA] hover:text-white transition-colors pb-1 border-b border-transparent hover:border-white w-fit"
         >
           <FaGithub size={20} />
-          <span>@aakashdoguparthi</span>
+          <span>@DoguparthiAakash</span>
         </a>
       </div>
 

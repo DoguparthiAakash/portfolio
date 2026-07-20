@@ -5,28 +5,28 @@ import SectionHeading from '../ui/SectionHeading';
 
 const TIMELINE_DATA = [
   {
-    year: "2024 - Present",
-    title: "Machine Learning Engineer",
-    company: "Top AI Startup",
-    description: "Building autonomous agents and orchestrating LLM workflows for enterprise solutions. Reduced latency by 40% and improved response accuracy through custom RAG pipelines."
+    year: "Recent",
+    title: "Developer",
+    company: "Emglitz Technologies",
+    description: "Built a Spam Detection system using supervised machine learning techniques. Handled data preprocessing (tokenization, TF-IDF vectorization) and trained classification models achieving reliable detection accuracy."
   },
   {
-    year: "2022 - 2024",
-    title: "AI Researcher",
-    company: "Deep Learning Lab",
-    description: "Published 2 papers on parameter-efficient fine-tuning (PEFT). Developed novel techniques for quantizing transformer models for edge devices."
+    year: "Recent",
+    title: "Project Manager",
+    company: "Infosys Springboard",
+    description: "Led development of a Smart Home Energy Manager, overseeing requirements analysis, iterative delivery, and team coordination. Gained practical exposure to project lifecycle management and professional software delivery workflows."
   },
   {
-    year: "2021",
-    title: "First Place, Global AI Hackathon",
-    company: "TechCorp",
-    description: "Built a fully offline privacy-preserving voice assistant in 48 hours using early ONNX runtime and React Native."
+    year: "Recent",
+    title: "Data Manager",
+    company: "ServiceNow Xanadu",
+    description: "Managed end-to-end data operations, ensuring data quality, consistency, and governance across enterprise datasets."
   },
   {
-    year: "2019 - 2023",
-    title: "B.S. in Computer Science",
-    company: "University of Technology",
-    description: "Specialized in Artificial Intelligence and Systems Architecture. Graduated with Honors."
+    year: "2024",
+    title: "B.E. in Computer Science (AI & ML)",
+    company: "V.S.B. Engineering College",
+    description: "Specialized in Artificial Intelligence and Machine Learning. Graduated with a CGPA of 7.56 / 10.0."
   }
 ];
 
