@@ -5,28 +5,28 @@ import SectionHeading from '../ui/SectionHeading';
 
 const TIMELINE_DATA = [
   {
-    year: "Recent",
+    year: "Internship",
     title: "Developer",
     company: "Emglitz Technologies",
     description: "Built a Spam Detection system using supervised machine learning techniques. Handled data preprocessing (tokenization, TF-IDF vectorization) and trained classification models achieving reliable detection accuracy."
   },
   {
-    year: "Recent",
+    year: "Internship",
     title: "Project Manager",
     company: "Infosys Springboard",
-    description: "Led development of a Smart Home Energy Manager, overseeing requirements analysis, iterative delivery, and team coordination. Gained practical exposure to project lifecycle management and professional software delivery workflows."
+    description: "Led development of a Smart Home Energy Manager, overseeing requirements analysis, iterative delivery, and team coordination. Gained exposure to project lifecycle management."
   },
   {
-    year: "Recent",
+    year: "Internship",
     title: "Data Manager",
     company: "ServiceNow Xanadu",
     description: "Managed end-to-end data operations, ensuring data quality, consistency, and governance across enterprise datasets."
   },
   {
-    year: "2024",
-    title: "B.E. in Computer Science (AI & ML)",
+    year: "Education",
+    title: "B.E. Computer Science (AI & ML)",
     company: "V.S.B. Engineering College",
-    description: "Specialized in Artificial Intelligence and Machine Learning. Graduated with a CGPA of 7.56 / 10.0."
+    description: "Specialized in Artificial Intelligence and Machine Learning. CGPA: 7.56 / 10.0."
   }
 ];
 

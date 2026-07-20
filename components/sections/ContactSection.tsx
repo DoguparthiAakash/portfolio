@@ -61,9 +61,8 @@ export default function ContactSection() {
       <div className="mt-32 pt-8 border-t border-[rgba(255,255,255,0.08)] w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#A1A1AA]">
         <p>© {new Date().getFullYear()} Aakash Doguparthi. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="https://www.linkedin.com/in/aakash-doguparthi-129251297/" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="https://github.com/DoguparthiAakash" className="hover:text-white transition-colors">GitHub</a>
-          <a href="https://twitter.com" className="hover:text-white transition-colors">Twitter</a>
+          <a href="https://www.linkedin.com/in/aakash-doguparthi-129251297/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+          <a href="https://github.com/DoguparthiAakash" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
         </div>
       </div>
     </section>

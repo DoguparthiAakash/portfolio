@@ -44,7 +44,7 @@ export default function CommandPalette() {
     { id: 'about', title: 'About', icon: <FaUser />, action: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'projects', title: 'Projects', icon: <FaCode />, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
     { id: 'contact', title: 'Contact', icon: <FaEnvelope />, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
-    { id: 'resume', title: 'Download Resume', icon: <FaFileAlt />, action: () => window.open('/resume.pdf', '_blank') },
+    { id: 'resume', title: 'Download Resume', icon: <FaFileAlt />, action: () => window.open('/Doguparthi_Aakash_Resume.pdf', '_blank') },
     { id: 'terminal', title: 'Open Terminal', icon: <FaTerminal />, action: () => alert('Terminal Easter Egg! (Coming soon)') },
   ];
 

@@ -4,7 +4,10 @@ import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import CursorGlow from "@/components/ui/CursorGlow";
 import CommandPalette from "@/components/ui/CommandPalette";
-import Chatbar from "@/components/ui/Chatbar";
+
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import AIChatbar from "@/components/ui/AIChatbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -19,16 +22,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased bg-[#090909] text-white selection:bg-[#4F8CFF]/30 selection:text-white min-h-screen flex flex-col`}>
-        <CursorGlow />
-        <CommandPalette />
-        <Chatbar />
-        <SmoothScroll>
-          <main className="flex-grow">
-            {children}
-          </main>
-        </SmoothScroll>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+          <ThemeSwitcher />
+          <CursorGlow />
+          <CommandPalette />
+          <SmoothScroll>
+            <main className="flex-grow">
+              {children}
+            </main>
+          </SmoothScroll>
+          <AIChatbar />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ interface MagneticButtonProps {
   as?: any;
   href?: string;
   target?: string;
+  rel?: string;
 }
 
 export default function MagneticButton({ 
@@ -18,7 +19,8 @@ export default function MagneticButton({
   onClick,
   as: Component = 'button',
   href,
-  target
+  target,
+  rel
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -35,7 +37,9 @@ export default function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  const commonProps = href ? { href, target, className: "inline-block" } : { onClick, className: "inline-block" };
+  const commonProps = href 
+    ? { href, target, rel, className: "inline-block" } 
+    : { onClick, className: "inline-block" };
 
   return (
     <Component {...commonProps}>
