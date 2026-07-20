@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Battery, Wifi, Search, Command } from "lucide-react";
+import { Battery, Wifi, Search, Command, Volume2, Power } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { useOSStore } from "@/store/os-store";
@@ -33,9 +33,11 @@ export default function MenuBar() {
     >
       <div className="flex items-center gap-4">
         {/* OS Logo */}
-        <div className="flex items-center gap-1.5 text-white font-bold cursor-pointer hover:text-white/80 transition-colors">
-          <Command size={14} className={osTheme === "linux" ? "text-[#e95420]" : "text-white"} />
-          <span>{osTheme === "mac" ? "Aakash OS" : "Ubuntu"}</span>
+        <div className={`flex items-center gap-1.5 text-white font-bold cursor-pointer hover:text-white/80 transition-colors ${osTheme === "linux" ? "hover:bg-white/10 px-2 py-1 rounded-full -ml-2" : ""}`}
+             onClick={() => osTheme === "linux" && window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+        >
+          {osTheme === "mac" && <Command size={14} className="text-white" />}
+          <span>{osTheme === "mac" ? "Aakash OS" : "Activities"}</span>
         </div>
         
         {osTheme === "mac" && (
@@ -58,13 +60,17 @@ export default function MenuBar() {
       <div className="flex items-center gap-4">
         <button 
           onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
-          className="flex items-center gap-1 hover:text-white transition-colors"
+          className={`flex items-center gap-1 hover:text-white transition-colors ${osTheme === "linux" ? "hidden" : ""}`}
         >
           <Search size={14} />
         </button>
         
-        <Wifi size={14} />
-        <Battery size={14} />
+        <div className={`flex items-center gap-3 ${osTheme === "linux" ? "hover:bg-white/10 px-2 py-1 rounded-full cursor-pointer transition-colors" : ""}`}>
+          <Wifi size={14} />
+          {osTheme === "linux" && <Volume2 size={14} />}
+          <Battery size={14} />
+          {osTheme === "linux" && <Power size={14} />}
+        </div>
         
         {osTheme === "mac" && (
           <span className="text-white min-w-[60px] text-right font-semibold">{time}</span>

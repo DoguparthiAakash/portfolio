@@ -38,7 +38,7 @@ interface OSState {
 export const useOSStore = create<OSState>((set, get) => ({
   windows: [],
   highestZIndex: 10,
-  osTheme: "mac", // default
+  osTheme: "linux", // default
   isBooting: true, // starts with a boot screen
   isStartMenuOpen: false,
 

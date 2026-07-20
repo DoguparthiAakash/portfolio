@@ -49,10 +49,10 @@ export default function OSWindowComponent({ windowData, children }: WindowProps)
           ? "rounded-xl border border-white/20 bg-black/50 backdrop-blur-2xl shadow-2xl" 
           : osTheme === "windows"
           ? "rounded-md border border-[#3c3c3c] bg-[#202020]/90 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
-          : "rounded-t-lg border border-[#3d3d3d] bg-[#1e1e1e] shadow-xl"
+          : "rounded-lg border border-[#3d3d3d] bg-[#1e1e1e] shadow-xl"
       } ${
         windowData.isFocused 
-          ? osTheme === "mac" ? "ring-1 ring-white/30" : osTheme === "windows" ? "border-[#545454]" : "ring-1 ring-[#e95420]/50" 
+          ? osTheme === "mac" ? "ring-1 ring-white/30" : osTheme === "windows" ? "border-[#545454]" : "ring-1 ring-[#e95420]" 
           : "opacity-95"
       }`}
     >

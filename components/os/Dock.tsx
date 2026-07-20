@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useOSStore } from "@/store/os-store";
-import { Terminal, Network, Code2, Box, Command, Server, Wifi, Battery, Volume2, ChevronUp } from "lucide-react";
+import { Terminal, Network, Code2, Box, Command, Server, Wifi, Battery, Volume2, ChevronUp, Grip } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const APPS = [
@@ -36,7 +36,7 @@ export default function Dock() {
         ? "bottom-4 left-1/2 -translate-x-1/2" 
         : osTheme === "windows"
         ? "bottom-0 left-0 w-full"
-        : "left-0 top-1/2 -translate-y-1/2 ml-2"
+        : "left-0 top-8 bottom-0 flex items-center"
     }`}>
       <motion.div 
         initial={{ y: 50, opacity: 0 }}
@@ -46,7 +46,7 @@ export default function Dock() {
             ? "flex-row gap-2 rounded-2xl bg-black/50 p-2 shadow-2xl border border-white/20"
             : osTheme === "windows"
             ? "flex-row w-full justify-center bg-[#202020]/90 border-t border-[#3c3c3c] p-1 shadow-[0_-8px_32px_rgba(0,0,0,0.5)] h-12 relative"
-            : "flex-col gap-2 rounded-xl bg-[#1e1e1e]/90 p-2 shadow-xl border border-[#3d3d3d]"
+            : "flex-col gap-2 bg-[#1e1e1e]/95 p-2 shadow-xl border-r border-[#3d3d3d] h-full justify-start w-[60px]"
         }`}
       >
         {osTheme === "windows" && (
@@ -105,18 +105,35 @@ export default function Dock() {
           );
         })}
 
-        {osTheme !== "windows" && (
+        {/* Linux App Grid Icon (Bottom of Dock) */}
+        {osTheme === "linux" && (
+          <div className="mt-auto mb-2 relative group">
+            {hoveredApp === "search" && (
+              <div className="absolute left-16 top-1/2 -translate-y-1/2 bg-[#1e1e1e] border-[#444] rounded px-2 py-1 text-xs text-white border whitespace-nowrap z-[10000]">
+                Show Applications
+              </div>
+            )}
+            <button
+              onMouseEnter={() => setHoveredApp("search")}
+              onMouseLeave={() => setHoveredApp(null)}
+              onClick={() => {
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+              }}
+              className="flex items-center justify-center transition-all duration-200 hover:bg-white/10 h-10 w-10 rounded-lg text-white"
+            >
+              <Grip size={24} className="text-white/80" />
+            </button>
+          </div>
+        )}
+
+        {osTheme === "mac" && (
           <>
-            <div className={`bg-white/10 ${osTheme === "mac" ? "mx-1 h-8 w-px" : "my-1 h-px w-8"}`} />
+            <div className="bg-white/10 mx-1 h-8 w-px" />
             
             {/* Spotlight Trigger */}
             <div className="relative group">
               {hoveredApp === "search" && (
-                <div className={`absolute rounded px-2 py-1 text-xs text-white border whitespace-nowrap z-[10000] ${
-                  osTheme === "mac" 
-                    ? "-top-10 left-1/2 -translate-x-1/2 bg-black/80 border-white/20" 
-                    : "left-14 top-1/2 -translate-y-1/2 bg-[#1e1e1e] border-[#444]"
-                }`}>
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 border-white/20 rounded px-2 py-1 text-xs text-white border whitespace-nowrap z-[10000]">
                   Spotlight (Cmd+K)
                 </div>
               )}
@@ -126,11 +143,9 @@ export default function Dock() {
                 onClick={() => {
                   window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
                 }}
-                className={`flex items-center justify-center transition-all duration-200 hover:bg-white/5 ${
-                  osTheme === "mac" ? "h-12 w-12 rounded-xl" : "h-12 w-12 rounded-lg"
-                }`}
+                className="flex items-center justify-center transition-all duration-200 hover:bg-white/5 h-12 w-12 rounded-xl"
               >
-                <Command className={`h-6 w-6 ${osTheme === "mac" ? "text-white/70" : "text-white/80"}`} />
+                <Command className="h-6 w-6 text-white/70" />
               </button>
             </div>
           </>

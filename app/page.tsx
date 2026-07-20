@@ -47,7 +47,7 @@ export default function Desktop() {
           </div>
         )}
         {osTheme === "linux" && (
-          <div className="absolute inset-0 bg-[#2c001e] bg-gradient-to-br from-[#2c001e] via-[#4d1036] to-[#e95420]/30" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80')] bg-cover bg-center" />
         )}
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 pointer-events-none" />
       </div>
