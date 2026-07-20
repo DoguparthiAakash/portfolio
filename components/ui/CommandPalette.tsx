@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Briefcase, Mail, BookOpen, FlaskConical, Terminal } from "lucide-react";
+import { Search, Terminal, Network, Code2, Box, Mail, Briefcase } from "lucide-react";
 import { FiGithub as Github, FiLinkedin as Linkedin } from "react-icons/fi";
 import { PERSONAL } from "@/lib/constants";
+import { useOSStore } from "@/store/os-store";
 
 interface CommandItem {
   id: string;
@@ -13,14 +13,14 @@ interface CommandItem {
   icon: React.ElementType<any>;
   shortcut?: string;
   perform: () => void;
-  section: "Navigation" | "Social" | "Actions";
+  section: "Applications" | "Social" | "Actions";
 }
 
 export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const router = useRouter();
+  const { openApp } = useOSStore();
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Toggle palette on Ctrl+K or Cmd+K
@@ -49,27 +49,25 @@ export default function CommandPalette() {
     }
   }, [isOpen]);
 
-  const navigateTo = useCallback((path: string) => {
+  const openOsApp = (appId: string, title: string, icon: any) => {
     setIsOpen(false);
-    router.push(path);
-  }, [router]);
+    openApp({ id: appId, title, icon });
+  };
 
-  const openUrl = useCallback((url: string) => {
+  const openUrl = (url: string) => {
     setIsOpen(false);
     window.open(url, "_blank");
-  }, []);
+  };
 
   const commands: CommandItem[] = [
-    { id: "home", name: "Home", icon: Home, section: "Navigation", perform: () => navigateTo("/") },
-    { id: "about", name: "About Me", icon: User, section: "Navigation", perform: () => navigateTo("/#about") },
-    { id: "projects", name: "Projects", icon: Briefcase, section: "Navigation", perform: () => navigateTo("/#projects") },
-    { id: "research", name: "Research", icon: FlaskConical, section: "Navigation", perform: () => navigateTo("/#research") },
-    { id: "blog", name: "Blog", icon: BookOpen, section: "Navigation", perform: () => navigateTo("/blog") },
-    { id: "playground", name: "AI Playground", icon: Terminal, section: "Navigation", perform: () => navigateTo("/playground") },
-    { id: "contact", name: "Contact", icon: Mail, section: "Navigation", perform: () => navigateTo("/#contact") },
+    { id: "agent", name: "Agentic OS", icon: Terminal, section: "Applications", perform: () => openOsApp("agent", "Agentic OS", Terminal) },
+    { id: "graph", name: "Neural Graph", icon: Network, section: "Applications", perform: () => openOsApp("graph", "Neural Graph", Network) },
+    { id: "jupyter", name: "Jupyter Lab", icon: Code2, section: "Applications", perform: () => openOsApp("jupyter", "Jupyter Lab", Code2) },
+    { id: "latent", name: "Latent Space Explorer", icon: Box, section: "Applications", perform: () => openOsApp("latent", "Latent Space", Box) },
     
     { id: "github", name: "GitHub", icon: Github, section: "Social", perform: () => openUrl(PERSONAL.github) },
     { id: "linkedin", name: "LinkedIn", icon: Linkedin, section: "Social", perform: () => openUrl(PERSONAL.linkedin) },
+    { id: "email", name: "Email", icon: Mail, section: "Social", perform: () => openUrl(`mailto:${PERSONAL.email}`) },
     
     { id: "resume", name: "Download Resume", icon: Briefcase, section: "Actions", perform: () => openUrl(PERSONAL.resumePath) },
   ];
