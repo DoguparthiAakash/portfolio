@@ -5,7 +5,8 @@ import { PERSONAL } from "@/lib/constants";
 import TypewriterText from "./TypewriterText";
 import ParticleField from "./ParticleField";
 import dynamic from "next/dynamic";
-import { ArrowDown, Github, FlaskConical, FileDown, Mail } from "lucide-react";
+import { ArrowDown, FlaskConical, FileDown, Mail } from "lucide-react";
+import { FiGithub as Github } from "react-icons/fi";
 
 const NeuralNetwork3D = dynamic(
   () => import("@/components/three/NeuralNetwork3D"),
@@ -25,7 +26,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   },
 };
 
@@ -152,7 +153,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             className="relative hidden aspect-square lg:block"
           >
             {/* Glow ring behind the 3D scene */}

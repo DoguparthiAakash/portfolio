@@ -7,7 +7,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import {
   ArrowLeft,
-  Github,
   ExternalLink,
   Target,
   Layers,
@@ -16,6 +15,7 @@ import {
   Cpu,
   TrendingUp,
 } from "lucide-react";
+import { FiGithub as Github } from "react-icons/fi";
 
 interface Props {
   project: Project;

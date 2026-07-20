@@ -169,6 +169,7 @@ export default function CommandPalette() {
                         {items.map((cmd) => {
                           const index = flatResults.findIndex((item) => item.id === cmd.id);
                           const isSelected = index === selectedIndex;
+                          const Icon = cmd.icon as any;
 
                           return (
                             <button
@@ -181,7 +182,7 @@ export default function CommandPalette() {
                                   : "text-[var(--text-secondary)] hover:bg-white/5"
                               }`}
                             >
-                              <cmd.icon size={16} className={isSelected ? "text-[var(--primary)]" : "text-[var(--text-muted)]"} />
+                              <Icon size={16} className={isSelected ? "text-[var(--primary)]" : "text-[var(--text-muted)]"} />
                               {cmd.name}
                             </button>
                           );

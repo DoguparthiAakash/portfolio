@@ -6,8 +6,6 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import { PERSONAL } from "@/lib/constants";
 import {
   Send,
-  Github,
-  Linkedin,
   Mail,
   FileDown,
   CheckCircle2,
