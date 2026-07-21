@@ -25,7 +25,7 @@ export default function ContactSection() {
         className="max-w-2xl"
       >
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-[#FFFFFF]">
-          Let's build something <span className="text-[#4F8CFF]">intelligent.</span>
+          Let's build something <span className="text-[#4F8CFF]">interestingt.</span>
         </h2>
         
         <p className="text-lg md:text-xl text-[#A1A1AA] mb-12">

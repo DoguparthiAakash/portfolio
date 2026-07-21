@@ -45,7 +45,7 @@ export default function GithubSection() {
             <p className="text-4xl md:text-5xl font-bold text-white">14 Days</p>
           </div>
           <div className="text-center md:text-left">
-            <h4 className="text-[#A1A1AA] text-sm uppercase tracking-widest mb-1">Repositories</h4>
+            <h4 className="text-[#A1A1AA] text-sm uppercase tracking-widest mb-1">Repositories(Both public and private)</h4>
             <p className="text-4xl md:text-5xl font-bold text-white">42</p>
           </div>
         </div>
