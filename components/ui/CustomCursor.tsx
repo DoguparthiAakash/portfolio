@@ -9,7 +9,7 @@ export default function CustomCursor() {
   const scale = useMotionValue(1);
 
   const [cursorType, setCursorType] = useState(0);
-  const NUM_CURSORS = 16;
+  const NUM_CURSORS = 12;
   const hitEdgeCooldown = useRef(false);
 
   // We use spring for smooth scaling and movement
@@ -162,117 +162,95 @@ export default function CustomCursor() {
             </motion.div>
           </div>
         );
-      case 6: // RADAR
+      case 6: // QUANTUM_CORE
         return (
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-[#39D353]/30 bg-[#0A0A0A]/50 overflow-hidden">
+          <div className="relative flex items-center justify-center w-8 h-8">
             <motion.div 
-              className="absolute top-1/2 left-1/2 w-6 h-6 bg-gradient-to-br from-[#39D353] to-transparent origin-top-left opacity-60"
+              className="absolute w-4 h-4 bg-cyan-400 rounded-full mix-blend-screen blur-[2px]"
+              animate={{ x: [-4, 4, -4], y: [-4, 4, -4] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="absolute w-4 h-4 bg-fuchsia-500 rounded-full mix-blend-screen blur-[2px]"
+              animate={{ x: [4, -4, 4], y: [4, -4, 4] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div className="absolute w-2 h-2 bg-white rounded-full z-10 shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+          </div>
+        );
+      case 7: // LIDAR_SCANNER
+        return (
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-[#39D353]/30 overflow-hidden">
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-[#39D353]/50 to-transparent"
+              style={{ transformOrigin: "center" }}
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             />
             <div className="absolute w-1.5 h-1.5 bg-[#39D353] rounded-full shadow-[0_0_5px_#39D353]" />
-            <div className="absolute inset-2 rounded-full border border-[#39D353]/20" />
           </div>
         );
-      case 7: // PULSATING_BEACON
-        return (
-          <div className="relative flex items-center justify-center w-8 h-8">
-            <motion.div 
-              className="absolute inset-0 rounded-full border-2 border-[#ec4899]"
-              animate={{ scale: [0.5, 2], opacity: [1, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
-            />
-            <motion.div 
-              className="absolute inset-0 rounded-full border-2 border-[#ec4899]"
-              animate={{ scale: [0.5, 2], opacity: [1, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.75 }}
-            />
-            <div className="absolute w-3 h-3 bg-[#ec4899] rounded-full shadow-[0_0_10px_#ec4899]" />
-          </div>
-        );
-      case 8: // NEON_DIAMOND
-        return (
-          <motion.div 
-            className="relative flex items-center justify-center w-6 h-6"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          >
-            <div className="absolute w-full h-full border-2 border-[#8b5cf6] shadow-[0_0_10px_#8b5cf6,inset_0_0_10px_#8b5cf6]" style={{ transform: "rotate(45deg)" }} />
-            <div className="absolute w-2 h-2 bg-[#8b5cf6] rounded-full" />
-          </motion.div>
-        );
-      case 9: // ATOM_MODEL
+      case 8: // NEURAL_SYNAPSE
         return (
           <div className="relative flex items-center justify-center w-10 h-10">
-            <div className="absolute inset-0" style={{ transform: "rotateZ(0deg) rotateX(70deg)" }}>
-              <motion.div className="w-full h-full border border-[#0ea5e9]/80 rounded-full" animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-            </div>
-            <div className="absolute inset-0" style={{ transform: "rotateZ(60deg) rotateX(70deg)" }}>
-              <motion.div className="w-full h-full border border-[#0ea5e9]/80 rounded-full" animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-            </div>
-            <div className="absolute inset-0" style={{ transform: "rotateZ(120deg) rotateX(70deg)" }}>
-              <motion.div className="w-full h-full border border-[#0ea5e9]/80 rounded-full" animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-            </div>
-            <div className="w-2.5 h-2.5 bg-[#0ea5e9] rounded-full shadow-[0_0_10px_#0ea5e9]" />
+             <motion.svg className="absolute inset-0 text-indigo-400/50" viewBox="0 0 100 100" animate={{ rotate: 180, scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
+                <path d="M50 50 L20 20 M50 50 L80 30 M50 50 L40 90 M50 50 L90 70 M50 50 L10 60" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+             </motion.svg>
+             <div className="absolute w-2.5 h-2.5 bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]" />
+             <motion.div className="absolute w-1 h-1 bg-white rounded-full" animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1, repeat: Infinity }} />
           </div>
         );
-      case 10: // COMPASS_NEEDLE
+      case 9: // FRACTAL_HEXAGON
         return (
           <div className="relative flex items-center justify-center w-8 h-8">
             <motion.div 
-              className="w-1.5 h-10 bg-gradient-to-b from-[#ef4444] via-white to-[#3b82f6] rounded-full shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-              animate={{ rotate: 360 }}
+              className="absolute inset-0 border border-[#A1A1AA] opacity-50"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+              animate={{ rotate: 360, scale: [1, 1.2, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="absolute inset-1 border border-white opacity-80"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+              animate={{ rotate: -360 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div className="absolute w-1 h-1 bg-white rounded-full" />
+          </div>
+        );
+      case 10: // PULSAR_STAR
+        return (
+          <div className="relative flex items-center justify-center w-12 h-12">
+            <motion.div 
+              className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent blur-[1px]"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }}
+            />
+            <div className="absolute w-3 h-3 bg-white rounded-full shadow-[0_0_15px_4px_rgba(34,211,238,0.8)]" />
+            <motion.div 
+              className="absolute w-4 h-4 bg-cyan-200 rounded-full mix-blend-screen blur-[2px]"
+              animate={{ scale: [1, 1.5, 1], opacity: [0.8, 0.3, 0.8] }}
+              transition={{ duration: 0.2, repeat: Infinity }}
             />
           </div>
         );
-      case 11: // SOLAR_SYSTEM
+      case 11: // SINGULARITY
         return (
-          <div className="relative flex items-center justify-center w-12 h-12">
-            <div className="absolute w-4 h-4 bg-[#eab308] rounded-full shadow-[0_0_15px_#eab308]" />
-            <motion.div className="absolute inset-0 flex items-center" animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
-              <div className="w-2.5 h-2.5 bg-[#3b82f6] rounded-full shadow-[0_0_5px_#3b82f6] -ml-1" />
-            </motion.div>
-            <motion.div className="absolute inset-2 flex items-center" animate={{ rotate: -360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }}>
-              <div className="w-1.5 h-1.5 bg-[#ef4444] rounded-full shadow-[0_0_5px_#ef4444] -ml-1" />
-            </motion.div>
+          <div className="relative flex items-center justify-center w-8 h-8">
+             <motion.div 
+               className="absolute inset-0 rounded-full border border-white"
+               style={{ borderLeftColor: 'transparent', borderRightColor: 'transparent' }}
+               animate={{ rotate: 360, scale: [1, 0.5, 1] }}
+               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+             />
+             <motion.div 
+               className="absolute inset-1 rounded-full border border-[#A1A1AA]"
+               style={{ borderTopColor: 'transparent', borderBottomColor: 'transparent' }}
+               animate={{ rotate: -360, scale: [0.5, 1, 0.5] }}
+               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+             />
+             <div className="absolute w-1 h-1 bg-white rounded-full" />
           </div>
-        );
-      case 12: // MINECRAFT_SWORD (Sweezy Fun Style)
-        return (
-          <div className="text-4xl drop-shadow-lg" style={{ transform: "rotate(-45deg)" }}>
-            🗡️
-          </div>
-        );
-      case 13: // PIZZA
-        return (
-          <motion.div 
-            className="text-4xl drop-shadow-lg"
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            🍕
-          </motion.div>
-        );
-      case 14: // ALIEN_UFO
-        return (
-          <motion.div 
-            className="text-4xl drop-shadow-lg"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            🛸
-          </motion.div>
-        );
-      case 15: // MAGIC_WAND
-        return (
-          <motion.div 
-            className="text-4xl drop-shadow-[0_0_15px_#a855f7]"
-            animate={{ rotate: [0, 20, -20, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            🪄
-          </motion.div>
         );
       default:
         return null;
