@@ -67,8 +67,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl text-base md:text-lg text-[#A1A1AA] mb-12"
         >
-          Building interesting software that learns, reasons and solves real-world problems.
-          Focused on production-ready machine learning systems, AI agents, and autonomous software.
+          Architecting intelligent systems equipped to learn, reason, and solve complex real-world challenges.
+          Dedicated to engineering production-grade machine learning pipelines, sophisticated AI agents, and resilient autonomous software architectures.
         </motion.p>
 
         <motion.div

@@ -29,8 +29,7 @@ export default function ContactSection() {
         </h2>
         
         <p className="text-lg md:text-xl text-[#A1A1AA] mb-12">
-          I'm currently open for new opportunities. Whether you have a question or just want to say hi, 
-          I'll try my best to get back to you!
+          I am actively exploring new engineering opportunities. Whether you seek to discuss complex technical challenges, potential collaborations, or architectural inquiries, I look forward to connecting.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

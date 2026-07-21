@@ -19,7 +19,7 @@ const PROJECTS: Project[] = [
     id: "mithlos",
     category: "OS Development",
     title: "Mithl OS",
-    description: "High-performance, independent operating system built from scratch, focused on Speed, Aesthetics, and Control. Eliminates legacy bloat for a premium environment.",
+    description: "A high-performance, independent operating system engineered from the ground up to maximize speed, aesthetic elegance, and granular control. It systematically eliminates legacy bloat to deliver a refined, distraction-free environment.",
     github: "https://github.com/DoguparthiAakash/Mithl",
     gradient: "from-[#FF416C] to-[#FF4B2B]"
   },
@@ -27,7 +27,7 @@ const PROJECTS: Project[] = [
     id: "uos",
     category: "Mobile OS",
     title: "UOS",
-    description: "Alternative mobile operating system based on FreeBSD, delivering an iOS-like experience. Designed for high stability and performance across ARM and RISC-V.",
+    description: "An alternative mobile operating system built upon FreeBSD, meticulously designed to emulate the fluidity of an iOS experience. Engineered for exceptional stability and optimal performance across modern ARM and RISC-V architectures.",
     github: "https://github.com/DoguparthiAakash/freebsd-src/tree/mobile-os/mobile",
     gradient: "from-[#4776E6] to-[#8E54E9]"
   },
@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
     id: "nux",
     category: "Language Design",
     title: "NUX Language",
-    description: "A programming language inspired by C, Rust, and Assembly — designed for simplicity, high execution speed, and memory safety bridging low-level control and ergonomics.",
+    description: "A custom programming language drawing inspiration from C, Rust, and Assembly. It elegantly harmonizes syntactical simplicity with rapid execution speed and robust memory safety, bridging the gap between low-level hardware control and modern developer ergonomics.",
     github: "https://github.com/DoguparthiAakash",
     gradient: "from-[#00B4DB] to-[#0083B0]"
   },
@@ -43,7 +43,7 @@ const PROJECTS: Project[] = [
     id: "plaza",
     category: "Systems",
     title: "Plaza VM",
-    description: "A virtual machine manager built with Rust, leveraging Rust's safety and performance guarantees for reliable and secure VM orchestration.",
+    description: "A sophisticated virtual machine manager developed in Rust, strategically leveraging the language's strict safety guarantees and performance characteristics to facilitate highly reliable and secure VM orchestration.",
     github: "https://github.com/DoguparthiAakash",
     gradient: "from-[#f12711] to-[#f5af19]"
   },
@@ -51,7 +51,7 @@ const PROJECTS: Project[] = [
     id: "textbeans",
     category: "Software",
     title: "TextBeans",
-    description: "A lightweight yet powerful Java-based software designed to work with any file format in one unified editing environment with a consistent interface.",
+    description: "A highly efficient, Java-based software solution engineered to seamlessly process diverse file formats within a unified, intuitive editing environment. It delivers a consistent and powerful interface tailored for streamlined development workflows.",
     github: "https://github.com/DoguparthiAakash/Text-Beans",
     gradient: "from-[#11998e] to-[#38ef7d]"
   }
@@ -62,7 +62,7 @@ export default function ProjectsSection() {
     <section id="projects" className="py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)] overflow-hidden">
       <SectionHeading 
         title="My Projects" 
-        subtitle="Systems programming, OS development, and applied AI."
+        subtitle="Pioneering systems programming, low-level architecture, and applied artificial intelligence."
       />
 
       <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-4 px-4 -mx-4 hide-scrollbar">

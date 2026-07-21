@@ -40,39 +40,28 @@ export default function AboutSection() {
         <motion.div variants={itemVariants} className="space-y-6">
           <h3 className="text-xl md:text-2xl font-medium text-white">First Principles Thinking</h3>
           <p className="text-[#A1A1AA] leading-relaxed">
-            I don't just glue APIs together. I build systems from the ground up to understand 
-            the underlying constraints. Whether it's training custom models, designing agentic 
-            workflows, or optimizing inference architectures, I break problems down to their 
-            fundamental truths before designing the solution.
+            I reject superficial abstraction in favor of deep technical comprehension. My approach involves architecting systems from their foundational components to master the underlying constraints. Whether engineering custom models, orchestrating complex agentic workflows, or optimizing inference architectures, I deconstruct challenges to their fundamental truths prior to formulating a solution.
           </p>
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-6">
           <h3 className="text-xl md:text-2xl font-medium text-white">Production Grade AI</h3>
           <p className="text-[#A1A1AA] leading-relaxed">
-            A demo is easy; a reliable product is hard. My focus is on crossing the chasm 
-            between research prototypes and scalable, robust software. I build with observability, 
-            evaluations, and guardrails in mind so that AI agents don't just sound smart—they 
-            act reliably in the real world.
+            While prototyping is accessible, engineering deterministic reliability is complex. My expertise lies in bridging the divide between experimental research and scalable, enterprise-grade software. I implement rigorous observability, comprehensive evaluations, and strict guardrails, ensuring that AI agents exhibit both sophisticated reasoning and steadfast reliability in production environments.
           </p>
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-6">
           <h3 className="text-xl md:text-2xl font-medium text-white">The End-to-End Mindset</h3>
           <p className="text-[#A1A1AA] leading-relaxed">
-            Great AI is useless without a great interface. As a full-stack engineer, I care 
-            deeply about the user experience. I design systems where the complexity of the 
-            machine learning models is abstracted away, leaving the user with an elegant, 
-            instant, and magical interaction.
+            Advanced artificial intelligence requires an equally refined interface to deliver true value. Operating with a full-stack perspective, I prioritize seamless user experiences. I architect systems that elegantly abstract the inherent complexity of machine learning models, presenting users with interactions that are intuitive, instantaneous, and exceptionally crafted.
           </p>
         </motion.div>
         
         <motion.div variants={itemVariants} className="space-y-6">
           <h3 className="text-xl md:text-2xl font-medium text-white">Continuous Learning</h3>
           <p className="text-[#A1A1AA] leading-relaxed">
-            The AI landscape evolves weekly. I stay ahead not by chasing every trend, but by 
-            building. My best insights come from hacking together OS concepts, experimenting 
-            with new LLM reasoning strategies, and building tools I personally need.
+            In a rapidly evolving AI landscape, I maintain a competitive edge through relentless, hands-on execution rather than passive observation. My most profound insights emerge from synthesizing low-level operating system concepts, pioneering novel LLM reasoning strategies, and engineering bespoke tools to solve emergent technical challenges.
           </p>
         </motion.div>
       </motion.div>

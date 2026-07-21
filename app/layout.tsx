@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import CursorGlow from "@/components/ui/CursorGlow";
 import CommandPalette from "@/components/ui/CommandPalette";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
-
+          <CustomCursor />
           <CursorGlow />
           <CommandPalette />
           <SmoothScroll>

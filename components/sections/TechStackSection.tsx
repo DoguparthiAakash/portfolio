@@ -46,7 +46,7 @@ export default function TechStackSection() {
     <section id="tech" className="py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)]">
       <SectionHeading 
         title="Technical Arsenal" 
-        subtitle="The tools and technologies I use to build scalable, interesting softwares."
+        subtitle="The core technologies and frameworks I leverage to engineer scalable, high-performance software systems."
       />
 
       <motion.div 
