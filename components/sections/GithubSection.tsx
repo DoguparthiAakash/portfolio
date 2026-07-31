@@ -22,12 +22,16 @@ export default function GithubSection() {
 
   useEffect(() => {
     async function fetchGithubData() {
+      let repos = 42;
       try {
-        // Fetch repositories count
         const userRes = await fetch('https://api.github.com/users/DoguparthiAakash');
         const userData = await userRes.json();
-        const repos = userData.public_repos || 42;
+        repos = userData.public_repos || 42;
+      } catch (e) {
+        // ignore
+      }
 
+      try {
         // Fetch contributions
         const contribRes = await fetch('https://github-contributions-api.deno.dev/DoguparthiAakash.json');
         if (!contribRes.ok) throw new Error("Failed to fetch contributions");
@@ -81,8 +85,8 @@ export default function GithubSection() {
           loading: false
         });
       } catch (error) {
-        console.error("Error fetching GitHub data:", error);
-        setStats(prev => ({ ...prev, loading: false }));
+        // use mock data gracefully
+        setStats(prev => ({ ...prev, repos, loading: false }));
       }
     }
 
@@ -129,19 +133,19 @@ export default function GithubSection() {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-12">
             <div className="text-center md:text-left">
               <h4 className="text-[#A1A1AA] text-sm uppercase tracking-widest mb-1">Total Contributions</h4>
-              <p className="text-4xl md:text-5xl font-bold text-white">
+              <p className="text-4xl md:text-5xl font-mono font-bold text-white">
                 {stats.totalContributions.toLocaleString()}
               </p>
             </div>
             <div className="text-center md:text-left">
               <h4 className="text-[#A1A1AA] text-sm uppercase tracking-widest mb-1">Current Streak</h4>
-              <p className="text-4xl md:text-5xl font-bold text-white">
-                {stats.currentStreak} Days
+              <p className="text-4xl md:text-5xl font-mono font-bold text-white">
+                {stats.currentStreak} <span className="font-sans text-2xl md:text-3xl">Days</span>
               </p>
             </div>
             <div className="text-center md:text-left">
               <h4 className="text-[#A1A1AA] text-sm uppercase tracking-widest mb-1">Repositories (Public)</h4>
-              <p className="text-4xl md:text-5xl font-bold text-white">
+              <p className="text-4xl md:text-5xl font-mono font-bold text-white">
                 {stats.repos}
               </p>
             </div>

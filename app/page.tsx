@@ -1,14 +1,21 @@
+import dynamic from 'next/dynamic';
 import HeroSection from "@/components/sections/HeroSection";
-import AboutSection from "@/components/sections/AboutSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
-import TechStackSection from "@/components/sections/TechStackSection";
-import TimelineSection from "@/components/sections/TimelineSection";
-import GithubSection from "@/components/sections/GithubSection";
-import ContactSection from "@/components/sections/ContactSection";
+
+// Dynamically import all below-the-fold components to reduce initial JS payload
+// This is critical for fast loading on low internet connectivity
+const AboutSection = dynamic(() => import("@/components/sections/AboutSection"));
+const ProjectsSection = dynamic(() => import("@/components/sections/ProjectsSection"));
+const TechStackSection = dynamic(() => import("@/components/sections/TechStackSection"));
+const TimelineSection = dynamic(() => import("@/components/sections/TimelineSection"));
+const GithubSection = dynamic(() => import("@/components/sections/GithubSection"));
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
+
+const FloatingLogos = dynamic(() => import('@/components/ui/FloatingLogos'));
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col min-h-screen">
+      <FloatingLogos />
       <HeroSection />
       <div className="px-6 md:px-12 lg:px-24 xl:px-48 mx-auto max-w-7xl w-full">
         <AboutSection />

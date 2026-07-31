@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
-import CursorGlow from "@/components/ui/CursorGlow";
 import CommandPalette from "@/components/ui/CommandPalette";
-import CustomCursor from "@/components/ui/CustomCursor";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading", display: 'swap' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans", display: 'swap' });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: 'swap' });
 
 export const metadata: Metadata = {
   title: "Aakash Doguparthi | AI Engineer",
@@ -22,19 +20,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
-          <CustomCursor />
-          <CursorGlow />
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body className={`${jakarta.variable} ${spaceGrotesk.variable} ${jetbrains.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground relative`}>
+          {/* Global Ambient Corner Lights */}
+          <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+            {/* Top Left Light */}
+            <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] md:w-[800px] md:h-[800px] bg-white/5 rounded-full blur-[120px]" />
+            {/* Top Right Light */}
+            <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] md:w-[800px] md:h-[800px] bg-white/5 rounded-full blur-[120px]" />
+          </div>
+
+          <ServiceWorkerRegistration />
           <CommandPalette />
           <SmoothScroll>
             <main className="flex-grow">
               {children}
             </main>
           </SmoothScroll>
-
-        </ThemeProvider>
       </body>
     </html>
   );
