@@ -30,7 +30,7 @@ export default function HeroSection() {
         backgroundSize: '40px 40px'
       }} />
       
-      <div className="relative z-10 flex flex-col items-center text-center px-10 sm:px-16 md:px-24 lg:px-32">
+      <div className="z-10 flex flex-col items-center text-center px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function HeroSection() {
           {/* Subtle ambient glow behind the name */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-[#4F8CFF]/20 blur-[80px] -z-10 rounded-full pointer-events-none" />
           
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight mb-4 text-[#FFFFFF] drop-shadow-[0_0_25px_rgba(255,255,255,0.4)] leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight mb-4 text-[#FFFFFF] drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]">
             Aakash Doguparthi
           </h1>
         </motion.div>
@@ -69,7 +69,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl px-4 text-sm sm:text-base md:text-lg font-serif text-[#A1A1AA] mb-12 leading-relaxed"
+          className="max-w-2xl text-base md:text-lg font-serif text-[#A1A1AA] mb-12 leading-relaxed"
         >
           Architecting intelligent systems equipped to learn, reason, and solve complex real-world challenges.
           Dedicated to engineering production-grade machine learning pipelines, sophisticated AI agents, and resilient autonomous software architectures.
