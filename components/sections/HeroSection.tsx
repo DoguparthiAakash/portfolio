@@ -30,7 +30,7 @@ export default function HeroSection() {
         backgroundSize: '40px 40px'
       }} />
       
-      <div className="z-10 flex flex-col items-center text-center px-4 md:px-8">
+      <div className="relative z-10 flex flex-col items-center text-center px-10 sm:px-16 md:px-24 lg:px-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
