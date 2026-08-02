@@ -9,7 +9,7 @@ const TechStackSection = dynamic(() => import("@/components/sections/TechStackSe
 const TimelineSection = dynamic(() => import("@/components/sections/TimelineSection"));
 const GithubSection = dynamic(() => import("@/components/sections/GithubSection"));
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
-const LoadingScreen = dynamic(() => import("@/components/ui/LoadingScreen"), { ssr: false });
+const LoadingScreen = dynamic(() => import("@/components/ui/LoadingScreen"));
 
 export default function Home() {
   return (
