@@ -9,12 +9,12 @@ const TechStackSection = dynamic(() => import("@/components/sections/TechStackSe
 const TimelineSection = dynamic(() => import("@/components/sections/TimelineSection"));
 const GithubSection = dynamic(() => import("@/components/sections/GithubSection"));
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"));
-
+const LoadingScreen = dynamic(() => import("@/components/ui/LoadingScreen"), { ssr: false });
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-
+      <LoadingScreen />
       <HeroSection />
       <div className="px-6 md:px-12 lg:px-24 xl:px-48 mx-auto max-w-7xl w-full">
         <AboutSection />
